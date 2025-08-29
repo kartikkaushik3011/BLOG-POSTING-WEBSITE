@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect("mongodb://127.0.0.1:27017/mini-project-1");
+
+mongoose.connect(process.env.MONGO_URL)
+    .then(() => console.log("✅ Connected to MongoDB Atlas"))
+    .catch(err => console.error("❌ Connection error:", err));
 
 let userSchema = mongoose.Schema({
     username: String,
@@ -8,9 +12,9 @@ let userSchema = mongoose.Schema({
     email: String,
     password: String,
     age: Number,
-    profilepic:{
-        type:String,
-        default:"default.jpg"
+    profilepic: {
+        type: String,
+        default: "default.jpg"
     },
     posts: [{
         type: mongoose.Schema.Types.ObjectId,

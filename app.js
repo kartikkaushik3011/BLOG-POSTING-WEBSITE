@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const upload = require('./configs/multerconfig');
 
 
+
 app.set("view engine", "ejs")
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")))
@@ -126,4 +127,4 @@ function isLoggedIn(req, res, next) {
 }
 
 
-app.listen(5000)
+app.listen(process.env.PORT || 5000)
